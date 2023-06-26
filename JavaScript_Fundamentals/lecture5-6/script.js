@@ -25,3 +25,10 @@ console.log(ageJonas < ageSarah);
 console.log(ageSarah >= 20);
 
 const isFullAge = ageSarah >= 20;
+
+// OPERATOR PRECEDENCE
+
+console.log(now - 1991 > now - 2018);
+
+const averageAge = (ageJonas + ageSarah) / 2;
+console.log(averageAge);
