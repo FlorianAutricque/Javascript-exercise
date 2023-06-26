@@ -32,3 +32,12 @@ console.log(javaScriptIsFun);
 console.log(typeof true);
 console.log(typeof 34);
 console.log(typeof 'Jonas');
+
+javaScriptIsFun = 'YES';
+// to assign a new value to a variable we don't need to us let
+console.log(typeof javaScriptIsFun);
+
+// undifined
+let year;
+year = 1992
+console.log(year)
