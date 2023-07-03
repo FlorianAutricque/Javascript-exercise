@@ -29,3 +29,35 @@ console.log("me", me); // 23
 
 //friend has the same address of me that has an value/address which has a value
 // that will change to 27
+
+//Primitives
+let lastName = "Henrique";
+let oldLastName = lastName;
+lastName = "Davis";
+console.log(lastName, oldLastName);
+
+//Objects
+const jessica = {
+  firstName: "Jessica",
+  lastName: "Henrique",
+  age: 27,
+};
+
+// this won't work
+const marriedJessica = jessica;
+marriedJessica.lastName = "Davis";
+console.log(jessica);
+console.log(marriedJessica);
+
+// Copying objects
+const jessica2 = {
+  firstName: "Jessica",
+  lastName: "Henrique",
+  age: 27,
+};
+
+// Shadow copy
+const jessicaCopy = Object.assign({}, jessica2);
+jessicaCopy.lastName = "Davis";
+console.log(jessica2);
+console.log(jessicaCopy);
