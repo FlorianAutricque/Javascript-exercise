@@ -10,6 +10,10 @@ age = 31;
 console.log(age); // 31
 console.log(oldAge); //30
 
+// age is store in an address. Age is != 30 but = the address which holds the value of 30
+// oldAge = address of value 30
+//age is redefinied to a new address which holds the value of 31.
+
 const me = {
   name: "flo",
   age: 30,
@@ -19,3 +23,9 @@ const friend = me;
 friend.age = 23;
 console.log("friend:", friend); //23
 console.log("me", me); // 23
+
+// me has an address which holds a value that is an address in the heap
+// that holds value
+
+//friend has the same address of me that has an value/address which has a value
+// that will change to 27
