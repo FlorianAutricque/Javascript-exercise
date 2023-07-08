@@ -89,19 +89,32 @@ movements.forEach(function (movement, i, array) {
 // });
 
 // MAP
+// const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
+
+// //Functional programming
+// const eurToUsd = 1.1;
+// const movementUSD = movements.map(function (movement) {
+//   return movement * eurToUsd;
+// });
+// console.log(movementUSD);
+
+// const movementUSDarrow = movements.map(movement => movement * eurToUsd);
+// console.log(movementUSDarrow);
+
+// //WITH FOR
+// const movementUSDfor = [];
+// for (const movement of movements) movementUSDfor.push(movement * eurToUsd);
+// console.log(movementUSDfor);
+
+// THE FILTER METHOD
 const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
 
-//Functional programming
-const eurToUsd = 1.1;
-const movementUSD = movements.map(function (movement) {
-  return movement * eurToUsd;
+const deposits = movements.filter(function (mov) {
+  return mov > 0;
 });
-console.log(movementUSD);
 
-const movementUSDarrow = movements.map(movement => movement * eurToUsd);
-console.log(movementUSDarrow);
+console.log(movements);
+console.log(deposits);
 
-//WITH FOR
-const movementUSDfor = [];
-for (const movement of movements) movementUSDfor.push(movement * eurToUsd);
-console.log(movementUSDfor);
+const withdrawal = movements.filter(mov => mov < 0);
+console.log(withdrawal);
