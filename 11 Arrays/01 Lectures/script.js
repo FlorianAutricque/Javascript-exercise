@@ -135,14 +135,38 @@ movements.forEach(function (movement, i, array) {
 // console.log(balance);
 // console.log(balanceArrow);
 
-// CHAINING METHODS
+// // CHAINING METHODS
 
+// const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
+
+// const eurToUsd = 1.1;
+// const totalDepositsUSD = movements
+//   .filter(mov => mov > 0)
+//   .map(mov => mov * eurToUsd)
+//   .reduce((acc, mov) => acc + mov, 0);
+
+// console.log(totalDepositsUSD);
+
+// FIND METHOD
 const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
 
-const eurToUsd = 1.1;
-const totalDepositsUSD = movements
-  .filter(mov => mov > 0)
-  .map(mov => mov * eurToUsd)
-  .reduce((acc, mov) => acc + mov, 0);
+const account2 = {
+  owner: "Jessica Davis",
+  movements: [5000, 3400, -150, -790, -3210, -1000, 8500, -30],
+  interestRate: 1.5,
+  pin: 2222,
+};
+const accounts = [account2];
+const account = accounts.find(acc => acc.owner === "Jessica Davis");
+console.log(account);
 
-console.log(totalDepositsUSD);
+let accountFor = [];
+for (const acc of accounts) {
+  if (acc.owner === "Jessica Davis") {
+    accountFor = acc;
+  }
+}
+console.log(accountFor);
+
+const firstWithdrawal = movements.find(mov => mov < 0);
+console.log(firstWithdrawal);
