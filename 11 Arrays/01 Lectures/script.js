@@ -121,16 +121,28 @@ movements.forEach(function (movement, i, array) {
 
 // THE REDUCE METHOD
 
+// const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
+
+// // accumulator is the sum
+// const balance = movements.reduce(function (accumulator, cur, i, arr) {
+//   return accumulator + cur;
+// }, 0);
+
+// const balanceArrow = movements.reduce(
+//   (accumulator, cur) => accumulator + cur,
+//   0
+// );
+// console.log(balance);
+// console.log(balanceArrow);
+
+// CHAINING METHODS
+
 const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
 
-// accumulator is the sum
-const balance = movements.reduce(function (accumulator, cur, i, arr) {
-  return accumulator + cur;
-}, 0);
+const eurToUsd = 1.1;
+const totalDepositsUSD = movements
+  .filter(mov => mov > 0)
+  .map(mov => mov * eurToUsd)
+  .reduce((acc, mov) => acc + mov, 0);
 
-const balanceArrow = movements.reduce(
-  (accumulator, cur) => accumulator + cur,
-  0
-);
-console.log(balance);
-console.log(balanceArrow);
+console.log(totalDepositsUSD);
