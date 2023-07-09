@@ -227,29 +227,29 @@ movements.forEach(function (movement, i, array) {
 // movements.sort((a, b) => a - b);
 // console.log(movements);
 
-// CREATING AND FILLING ARRAYS
+// // CREATING AND FILLING ARRAYS
 
-//empty array + fill method
-const x = new Array(7);
-console.log(x);
+// //empty array + fill method
+// const x = new Array(7);
+// console.log(x);
 
-x.fill(1); //fill the array with 1
-x.fill(1, 3); // start at index 3
-x.fill(1, 3, 5); // start at index 3 and finish at index 5
-console.log(x);
+// x.fill(1); //fill the array with 1
+// x.fill(1, 3); // start at index 3
+// x.fill(1, 3, 5); // start at index 3 and finish at index 5
+// console.log(x);
 
-// Array.from
-const y = Array.from({ length: 7 }, () => 1);
-console.log(y);
+// // Array.from
+// const y = Array.from({ length: 7 }, () => 1);
+// console.log(y);
 
-const z = Array.from({ length: 7 }, (_, i) => i + 1); // _ = a throw away variable
-console.log(z);
+// const z = Array.from({ length: 7 }, (_, i) => i + 1); // _ = a throw away variable
+// console.log(z);
 
-// sum from ui interface
+// // sum from ui interface
 
-labelBalance.addEventListener("click", function () {
-  const movementsUI = Array.from(
-    document.querySelectorAll(".movements__value"),
-    el => Number(el.textContent.replace("€", ""))
-  );
-});
+// labelBalance.addEventListener("click", function () {
+//   const movementsUI = Array.from(
+//     document.querySelectorAll(".movements__value"),
+//     el => Number(el.textContent.replace("€", ""))
+//   );
+// });
