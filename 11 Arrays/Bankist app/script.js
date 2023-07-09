@@ -220,3 +220,10 @@ btnClose.addEventListener("click", function (event) {
   }
   inputCloseUsername.value = inputClosePin.value = "";
 });
+
+let sorted = false;
+btnSort.addEventListener("click", function (event) {
+  event.preventDefault();
+  displayMovements(currentAccount.movements, !sorted);
+  sorted = !sorted;
+});

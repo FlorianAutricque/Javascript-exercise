@@ -191,19 +191,38 @@ movements.forEach(function (movement, i, array) {
 // console.log(movements.some(deposit));
 
 // FLAT AND FLATMAP
-const arr = [[1, 2, 3], [4, 5, 6], 7, 8];
-console.log(arr.flat());
+// const arr = [[1, 2, 3], [4, 5, 6], 7, 8];
+// console.log(arr.flat());
 
-const arr2 = [[[1, 2], 3], [4, [5, 6]], 7, 8];
-console.log(arr2.flat(2)); // 2 levels deep
+// const arr2 = [[[1, 2], 3], [4, [5, 6]], 7, 8];
+// console.log(arr2.flat(2)); // 2 levels deep
 
-//flat
-const overalB = accounts
-  .map(acc => acc.movements)
-  .flat()
-  .reduce((acc, mov) => acc + mov, 0);
+// //flat
+// const overalB = accounts
+//   .map(acc => acc.movements)
+//   .flat()
+//   .reduce((acc, mov) => acc + mov, 0);
 
-//flatmap = goes only 1 level deep
-const overalB2 = accounts
-  .flatmap(acc => acc.movements)
-  .reduce((acc, mov) => acc + mov, 0);
+// //flatmap = goes only 1 level deep
+// const overalB2 = accounts
+//   .flatmap(acc => acc.movements)
+//   .reduce((acc, mov) => acc + mov, 0);
+
+// sorting arrays
+
+//strings
+const owners = ["flo", "sarah", "adam", "martha"];
+console.log(owners.sort());
+console.log(owners);
+
+//numbers
+const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
+console.log(movements);
+
+// movements.sort((a, b) => {
+//   if (a > b) return 1;
+//   if (b > a) return -1;
+// });
+
+movements.sort((a, b) => a - b);
+console.log(movements);
