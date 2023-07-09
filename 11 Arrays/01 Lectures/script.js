@@ -210,19 +210,46 @@ movements.forEach(function (movement, i, array) {
 
 // sorting arrays
 
-//strings
-const owners = ["flo", "sarah", "adam", "martha"];
-console.log(owners.sort());
-console.log(owners);
+// //strings
+// const owners = ["flo", "sarah", "adam", "martha"];
+// console.log(owners.sort());
+// console.log(owners);
 
-//numbers
-const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
-console.log(movements);
+// //numbers
+// const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
+// console.log(movements);
 
-// movements.sort((a, b) => {
-//   if (a > b) return 1;
-//   if (b > a) return -1;
-// });
+// // movements.sort((a, b) => {
+// //   if (a > b) return 1;
+// //   if (b > a) return -1;
+// // });
 
-movements.sort((a, b) => a - b);
-console.log(movements);
+// movements.sort((a, b) => a - b);
+// console.log(movements);
+
+// CREATING AND FILLING ARRAYS
+
+//empty array + fill method
+const x = new Array(7);
+console.log(x);
+
+x.fill(1); //fill the array with 1
+x.fill(1, 3); // start at index 3
+x.fill(1, 3, 5); // start at index 3 and finish at index 5
+console.log(x);
+
+// Array.from
+const y = Array.from({ length: 7 }, () => 1);
+console.log(y);
+
+const z = Array.from({ length: 7 }, (_, i) => i + 1); // _ = a throw away variable
+console.log(z);
+
+// sum from ui interface
+
+labelBalance.addEventListener("click", function () {
+  const movementsUI = Array.from(
+    document.querySelectorAll(".movements__value"),
+    el => Number(el.textContent.replace("€", ""))
+  );
+});
