@@ -172,20 +172,38 @@ movements.forEach(function (movement, i, array) {
 // console.log(firstWithdrawal);
 
 // SOME
-const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
+// const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
 
-// Check for equality
-console.log(movements);
-console.log(movements.includes(-130));
+// // Check for equality
+// console.log(movements);
+// console.log(movements.includes(-130));
 
-// Check for condition
-const anyDeposits = movements.some(mov => mov > 0);
-console.log(anyDeposits);
+// // Check for condition
+// const anyDeposits = movements.some(mov => mov > 0);
+// console.log(anyDeposits);
 
-// EVERY
+// // EVERY
 
-console.log(movements.every(mov => mov > 0));
+// console.log(movements.every(mov => mov > 0));
 
-//Separate callback
-const deposit = mov => mov > 0;
-console.log(movements.some(deposit));
+// //Separate callback
+// const deposit = mov => mov > 0;
+// console.log(movements.some(deposit));
+
+// FLAT AND FLATMAP
+const arr = [[1, 2, 3], [4, 5, 6], 7, 8];
+console.log(arr.flat());
+
+const arr2 = [[[1, 2], 3], [4, [5, 6]], 7, 8];
+console.log(arr2.flat(2)); // 2 levels deep
+
+//flat
+const overalB = accounts
+  .map(acc => acc.movements)
+  .flat()
+  .reduce((acc, mov) => acc + mov, 0);
+
+//flatmap = goes only 1 level deep
+const overalB2 = accounts
+  .flatmap(acc => acc.movements)
+  .reduce((acc, mov) => acc + mov, 0);
