@@ -147,26 +147,45 @@ movements.forEach(function (movement, i, array) {
 
 // console.log(totalDepositsUSD);
 
-// FIND METHOD
+// // FIND METHOD
+// const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
+
+// const account2 = {
+//   owner: "Jessica Davis",
+//   movements: [5000, 3400, -150, -790, -3210, -1000, 8500, -30],
+//   interestRate: 1.5,
+//   pin: 2222,
+// };
+// const accounts = [account2];
+// const account = accounts.find(acc => acc.owner === "Jessica Davis");
+// console.log(account);
+
+// let accountFor = [];
+// for (const acc of accounts) {
+//   if (acc.owner === "Jessica Davis") {
+//     accountFor = acc;
+//   }
+// }
+// console.log(accountFor);
+
+// const firstWithdrawal = movements.find(mov => mov < 0);
+// console.log(firstWithdrawal);
+
+// SOME
 const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
 
-const account2 = {
-  owner: "Jessica Davis",
-  movements: [5000, 3400, -150, -790, -3210, -1000, 8500, -30],
-  interestRate: 1.5,
-  pin: 2222,
-};
-const accounts = [account2];
-const account = accounts.find(acc => acc.owner === "Jessica Davis");
-console.log(account);
+// Check for equality
+console.log(movements);
+console.log(movements.includes(-130));
 
-let accountFor = [];
-for (const acc of accounts) {
-  if (acc.owner === "Jessica Davis") {
-    accountFor = acc;
-  }
-}
-console.log(accountFor);
+// Check for condition
+const anyDeposits = movements.some(mov => mov > 0);
+console.log(anyDeposits);
 
-const firstWithdrawal = movements.find(mov => mov < 0);
-console.log(firstWithdrawal);
+// EVERY
+
+console.log(movements.every(mov => mov > 0));
+
+//Separate callback
+const deposit = mov => mov > 0;
+console.log(movements.some(deposit));
