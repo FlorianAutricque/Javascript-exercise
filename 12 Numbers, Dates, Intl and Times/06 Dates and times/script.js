@@ -270,3 +270,7 @@ console.log(Date.now());
 
 future.setFullYear(2040);
 console.log(future);
+
+// OPERATIONS DATES
+const calcDaysPassed = (date1, date2) =>
+  Math.abs(date2 - date1) / (1000 * 60 * 60 * 24);
