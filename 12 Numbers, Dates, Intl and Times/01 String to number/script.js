@@ -238,3 +238,23 @@ btnSort.addEventListener("click", function (e) {
   displayMovements(currentAccount.movements, !sorted);
   sorted = !sorted;
 });
+
+////////////////////////////////////////////
+
+// convert string to number
+
+console.log(Number("23"));
+console.log(+"23");
+
+//parsing number from a string
+console.log(Number.parseInt("30px", 10));
+
+console.log(Number.parseFloat("2.5rem"));
+
+//check if number is a number or not
+console.log(Number.isNaN(20));
+console.log(Number.isNaN("20"));
+
+// best way is to do:
+console.log(Number.isFinite(20));
+console.log(Number.isFinite("20"));
