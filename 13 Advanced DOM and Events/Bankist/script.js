@@ -9,6 +9,7 @@ const btnCloseModal = document.querySelector(".btn--close-modal");
 const btnsOpenModal = document.querySelectorAll(".btn--show-modal");
 const btnLearnMore = document.querySelector(".btn--scroll-to");
 const section1 = document.querySelector("#section--1");
+const navLink = document.querySelectorAll(".nav__link");
 
 const openModal = function (event) {
   event.preventDefault();
@@ -51,7 +52,7 @@ document
     message.parentElement.removeChild(message);
   });
 
-// styles
+// styles cookie message
 message.style.backgroundColor = "#37383d";
 message.style.height =
   Number.parseFloat(getComputedStyle(message).height, 10) + 30 + "px";
@@ -63,4 +64,18 @@ btnLearnMore.addEventListener("click", function (event) {
 
   // scrolling
   section1.scrollIntoView({ behavior: "smooth" });
+});
+
+// page navigation
+// 1. add event listenner to common parent element
+// 2. determine what element originated the event
+
+navLink.forEach(function (element) {
+  element.addEventListener("click", function (event) {
+    event.preventDefault();
+    if (event.target.classList.contains("nav__link")) {
+      const id = event.target.getAttribute("href");
+      document.querySelector(id).scrollIntoView({ behavior: "smooth" });
+    }
+  });
 });
