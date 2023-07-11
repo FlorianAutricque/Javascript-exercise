@@ -274,3 +274,18 @@ console.log(future);
 // OPERATIONS DATES
 const calcDaysPassed = (date1, date2) =>
   Math.abs(date2 - date1) / (1000 * 60 * 60 * 24);
+
+// Internationalizing Dates
+// Experimenting API
+// const now = new Date();
+// const options = {
+//   hour: "numeric",
+//   minute: "numeric",
+//   day: "numeric",
+//   month: "long",
+//   year: "numeric",
+//   weekday: "long",
+// };
+// const locale = navigator.language;
+// console.log(locale);
+// labelDate.textContent = new Intl.DateTimeFormat(locale, options).format(now);
