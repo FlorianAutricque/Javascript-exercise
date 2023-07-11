@@ -7,6 +7,8 @@ const modal = document.querySelector(".modal");
 const overlay = document.querySelector(".overlay");
 const btnCloseModal = document.querySelector(".btn--close-modal");
 const btnsOpenModal = document.querySelectorAll(".btn--show-modal");
+const btnLearnMore = document.querySelector(".btn--scroll-to");
+const section1 = document.querySelector("#section--1");
 
 const openModal = function (event) {
   event.preventDefault();
@@ -51,6 +53,14 @@ document
 
 // styles
 message.style.backgroundColor = "#37383d";
-console.log(getComputedStyle(message).height);
 message.style.height =
   Number.parseFloat(getComputedStyle(message).height, 10) + 30 + "px";
+
+//smooth scroll down
+btnLearnMore.addEventListener("click", function (event) {
+  event.preventDefault();
+  const s1 = section1.getBoundingClientRect();
+
+  // scrolling
+  section1.scrollIntoView({ behavior: "smooth" });
+});
