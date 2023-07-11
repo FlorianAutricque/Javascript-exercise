@@ -67,9 +67,6 @@ btnLearnMore.addEventListener("click", function (event) {
 });
 
 // page navigation
-// 1. add event listenner to common parent element
-// 2. determine what element originated the event
-
 navLink.forEach(function (element) {
   element.addEventListener("click", function (event) {
     event.preventDefault();
