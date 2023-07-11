@@ -38,7 +38,7 @@ const header = document.querySelector(".header");
 const message = document.createElement("div");
 message.classList.add("cookie-message");
 message.innerHTML =
-  'We use cookies for improved functionnality and analytics. <button class="btn btn--close-cookie">Got it!</button>';
+  '<h2>We use cookies for improved functionnality and analytics.</h2> <button class="btn btn--close-cookie">Got it!</button>';
 header.append(message);
 
 //remove cookie message
@@ -48,3 +48,9 @@ document
     // message.remove();
     message.parentElement.removeChild(message);
   });
+
+// styles
+message.style.backgroundColor = "#37383d";
+console.log(getComputedStyle(message).height);
+message.style.height =
+  Number.parseFloat(getComputedStyle(message).height, 10) + 30 + "px";
