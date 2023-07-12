@@ -126,7 +126,19 @@ nav.addEventListener("mouseout", function (event) {
 });
 
 // Sticky navigation
-const coords = section1.getBoundingClientRect();
-window.addEventListener("scroll", function () {
-  if (this.window.scrollY > coords.top) nav.classList.add("sticky");
+
+const navHeight = nav.getBoundingClientRect().height;
+
+const stickyNav = function (entries) {
+  const [entry] = entries;
+  if (!entry.isIntersecting) nav.classList.add("sticky");
+  else nav.classList.remove("sticky");
+};
+
+const headersObs = new IntersectionObserver(stickyNav, {
+  root: null,
+  threshold: 0,
+  rootMargin: `-${navHeight}px`,
 });
+
+headersObs.observe(header);
