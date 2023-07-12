@@ -25,6 +25,8 @@ const loadImg = function (entries, observer) {
 const imgObserver = new IntersectionObserver(loadImg, {
   root: null,
   threshold: 0,
+  //for the client to not see the loading, should happen in the BG
+  rootMargin: "200px",
 });
 
 imgTargets.forEach(img => imgObserver.observe(img));
