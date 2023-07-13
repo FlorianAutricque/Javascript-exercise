@@ -24,5 +24,15 @@ console.log(Person.prototype.isPrototypeOf(Person)); // false because it not the
 
 Person.prototype.species = "Homo sapiens";
 console.log(flo.species, matilda.species);
-
 // species is not a real proprety of Person
+
+console.log(flo.__proto__);
+
+const arr = [1, 2, 3, 4, 5, 6, 4];
+console.log(arr.__proto__);
+
+Array.prototype.unique = function () {
+  return [...new Set(this)];
+};
+
+console.log(arr.unique());
