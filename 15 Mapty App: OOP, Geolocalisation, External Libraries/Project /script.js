@@ -26,10 +26,25 @@ navigator.geolocation.getCurrentPosition(
         '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, Tiles style by <a href="https://www.hotosm.org/" target="_blank">Humanitarian OpenStreetMap Team</a> hosted by <a href="https://openstreetmap.fr/" target="_blank">OpenStreetMap France</a>',
     }).addTo(map);
 
-    L.marker(coords)
-      .addTo(map)
-      .bindPopup("A pretty CSS popup.<br> Easily customizable.")
-      .openPopup();
+    //eventlistener that is made from leaflet
+    map.on("click", function (mapEvent) {
+      console.log(mapEvent);
+
+      const { lat, lng } = mapEvent.latlng;
+      L.marker([lat, lng])
+        .addTo(map)
+        .bindPopup(
+          L.popup({
+            maxWidth: 250,
+            minWidth: 100,
+            autoClose: false,
+            closeOnClick: false,
+            className: "running-popup",
+          })
+        )
+        .setPopupContent("Workout")
+        .openPopup();
+    });
   },
   function () {
     alert("Could not get your position");
