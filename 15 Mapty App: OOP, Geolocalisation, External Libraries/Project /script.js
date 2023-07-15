@@ -13,40 +13,71 @@ const inputElevation = document.querySelector(".form__input--elevation");
 
 let map, mapEvent;
 
-// if (navigation.geolocation)
-navigator.geolocation.getCurrentPosition(function (position) {
-  const { latitude } = position.coords;
-  const { longitude } = position.coords;
+class App {
+  #map;
+  #mapEvent;
 
-  const coords = [latitude, longitude];
+  constructor() {
+    this._getPosition();
 
-  const map = L.map("map").setView(coords, 13);
+    form.addEventListener("submit", this._newWorkout.bind(this));
 
-  L.tileLayer("https://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png", {
-    attribution:
-      '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, Tiles style by <a href="https://www.hotosm.org/" target="_blank">Humanitarian OpenStreetMap Team</a> hosted by <a href="https://openstreetmap.fr/" target="_blank">OpenStreetMap France</a>',
-  }).addTo(map);
+    //change cadence and elev gain
+    inputType.addEventListener("change", this._toggleElevationField);
+  }
 
-  //eventlistener that is made from leaflet
-  map.on(
-    "click",
-    function (mapE) {
-      mapEvent = mapE;
-      form.classList.remove("hidden");
-      inputDistance.focus();
-    },
-    function () {
-      alert("Could not get your position");
-    }
-  );
+  _getPosition() {
+    // if (navigation.geolocation)
+    navigator.geolocation.getCurrentPosition(
+      this._loadMap.bind(this),
+      function () {
+        alert("Could not get your position");
+      }
+    );
+  }
 
-  form.addEventListener("submit", function (event) {
+  _loadMap(position) {
+    const { latitude } = position.coords;
+    const { longitude } = position.coords;
+
+    const coords = [latitude, longitude];
+
+    this.#map = L.map("map").setView(coords, 13);
+
+    L.tileLayer("https://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png", {
+      attribution:
+        '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, Tiles style by <a href="https://www.hotosm.org/" target="_blank">Humanitarian OpenStreetMap Team</a> hosted by <a href="https://openstreetmap.fr/" target="_blank">OpenStreetMap France</a>',
+    }).addTo(this.#map);
+
+    //eventlistener that is made from leaflet
+    this.#map.on("click", this._showForm.bind(this));
+  }
+
+  _showForm(mapE) {
+    this.#mapEvent = mapE;
+    form.classList.remove("hidden");
+    inputDistance.focus();
+  }
+
+  _toggleElevationField() {
+    inputElevation.closest(".form__row").classList.toggle("form__row--hidden");
+    inputCadence.closest(".form__row").classList.toggle("form__row--hidden");
+  }
+
+  _newWorkout(event) {
     event.preventDefault();
+
+    //clear input fields
+    inputDistance.value =
+      inputDuration.value =
+      inputCadence.value =
+      inputElevation.value =
+        "";
     //display marker
-    const { lat, lng } = mapEvent.latlng;
+    const { lat, lng } = this.#mapEvent.latlng;
 
     L.marker([lat, lng])
-      .addTo(map)
+      .addTo(this.#map)
       .bindPopup(
         L.popup({
           maxWidth: 250,
@@ -58,11 +89,8 @@ navigator.geolocation.getCurrentPosition(function (position) {
       )
       .setPopupContent("Workout")
       .openPopup();
-  });
-});
+  }
+}
 
-//change cadence and elev gain
-inputType.addEventListener("change", function () {
-  inputElevation.closest(".form__row").classList.toggle("form__row--hidden");
-  inputCadence.closest(".form__row").classList.toggle("form__row--hidden");
-});
+const app = new App();
+app._getPosition();
