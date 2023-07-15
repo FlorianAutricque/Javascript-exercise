@@ -11,42 +11,58 @@ const inputDuration = document.querySelector(".form__input--duration");
 const inputCadence = document.querySelector(".form__input--cadence");
 const inputElevation = document.querySelector(".form__input--elevation");
 
+let map, mapEvent;
+
 // if (navigation.geolocation)
-navigator.geolocation.getCurrentPosition(
-  function (position) {
-    const { latitude } = position.coords;
-    const { longitude } = position.coords;
+navigator.geolocation.getCurrentPosition(function (position) {
+  const { latitude } = position.coords;
+  const { longitude } = position.coords;
 
-    const coords = [latitude, longitude];
+  const coords = [latitude, longitude];
 
-    const map = L.map("map").setView(coords, 13);
+  const map = L.map("map").setView(coords, 13);
 
-    L.tileLayer("https://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png", {
-      attribution:
-        '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, Tiles style by <a href="https://www.hotosm.org/" target="_blank">Humanitarian OpenStreetMap Team</a> hosted by <a href="https://openstreetmap.fr/" target="_blank">OpenStreetMap France</a>',
-    }).addTo(map);
+  L.tileLayer("https://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png", {
+    attribution:
+      '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, Tiles style by <a href="https://www.hotosm.org/" target="_blank">Humanitarian OpenStreetMap Team</a> hosted by <a href="https://openstreetmap.fr/" target="_blank">OpenStreetMap France</a>',
+  }).addTo(map);
 
-    //eventlistener that is made from leaflet
-    map.on("click", function (mapEvent) {
-      console.log(mapEvent);
+  //eventlistener that is made from leaflet
+  map.on(
+    "click",
+    function (mapE) {
+      mapEvent = mapE;
+      form.classList.remove("hidden");
+      inputDistance.focus();
+    },
+    function () {
+      alert("Could not get your position");
+    }
+  );
 
-      const { lat, lng } = mapEvent.latlng;
-      L.marker([lat, lng])
-        .addTo(map)
-        .bindPopup(
-          L.popup({
-            maxWidth: 250,
-            minWidth: 100,
-            autoClose: false,
-            closeOnClick: false,
-            className: "running-popup",
-          })
-        )
-        .setPopupContent("Workout")
-        .openPopup();
-    });
-  },
-  function () {
-    alert("Could not get your position");
-  }
-);
+  form.addEventListener("submit", function (event) {
+    event.preventDefault();
+    //display marker
+    const { lat, lng } = mapEvent.latlng;
+
+    L.marker([lat, lng])
+      .addTo(map)
+      .bindPopup(
+        L.popup({
+          maxWidth: 250,
+          minWidth: 100,
+          autoClose: false,
+          closeOnClick: false,
+          className: "running-popup",
+        })
+      )
+      .setPopupContent("Workout")
+      .openPopup();
+  });
+});
+
+//change cadence and elev gain
+inputType.addEventListener("change", function () {
+  inputElevation.closest(".form__row").classList.toggle("form__row--hidden");
+  inputCadence.closest(".form__row").classList.toggle("form__row--hidden");
+});
