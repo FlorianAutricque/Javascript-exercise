@@ -76,9 +76,8 @@ class Cycling extends Workout {
   }
 }
 
-const run1 = new Running([39, -12], 5.2, 24, 256);
-const cycl1 = new Cycling([39, -12], 34, 54, 556);
-console.log(run1, cycl1);
+// const run1 = new Running([39, -12], 5.2, 24, 256);
+// const cycl1 = new Cycling([39, -12], 34, 54, 556);
 
 ///////////////////////////////////////////////////////////////////
 //APP
@@ -90,6 +89,9 @@ class App {
 
   constructor() {
     this._getPosition();
+
+    // get data from local storage
+    this._getLocalStorage();
 
     form.addEventListener("submit", this._newWorkout.bind(this));
 
@@ -124,6 +126,10 @@ class App {
 
     //eventlistener that is made from leaflet
     this.#map.on("click", this._showForm.bind(this));
+
+    this.#workouts.forEach(work => {
+      this._renderWorkoutMarker(work);
+    });
   }
 
   _showForm(mapE) {
@@ -204,6 +210,9 @@ class App {
 
     //clear input fields
     this._hideForm();
+
+    // set local storage to all workouts
+    this._setLocalStorage();
   }
   _renderWorkoutMarker(workout) {
     L.marker(workout.coords)
@@ -286,7 +295,28 @@ class App {
       },
     });
 
-    workout.click();
+    // workout.click();
+  }
+
+  _setLocalStorage() {
+    localStorage.setItem("workouts", JSON.stringify(this.#workouts));
+  }
+
+  _getLocalStorage() {
+    const data = JSON.parse(localStorage.getItem("workouts"));
+
+    if (!data) return;
+
+    this.#workouts = data;
+
+    this.#workouts.forEach(work => {
+      this._renderWorkout(work);
+    });
+  }
+
+  reset() {
+    localStorage.removeItem("workouts");
+    location.reload();
   }
 }
 
