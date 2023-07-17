@@ -43,9 +43,22 @@ const request = fetch("https://restcountries.com/v2/name/portugal");
 //     });
 // };
 
+//FETCH
 const getCountryData = function (country) {
+  //countnry 1
   fetch(`https://restcountries.com/v2/name/${country}`)
     .then(response => response.json())
-    .then(data => renderCountry(data[0]));
+    .then(data => {
+      renderCountry(data[0]);
+      //CHAINING PROMISES
+      const neighbour = data[0].borders?.[0];
+
+      if (!neighbour) return;
+
+      // country 2
+      return fetch(`https://restcountries.com/v2/alpha/${neighbour}`);
+    })
+    .then(response => response.json())
+    .then(data => renderCountry(data, "neighbour"));
 };
 getCountryData("portugal");
