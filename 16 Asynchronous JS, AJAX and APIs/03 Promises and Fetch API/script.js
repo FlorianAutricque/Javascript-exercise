@@ -57,5 +57,3 @@ const getCountryAndNeighbour = function (country) {
 
 getCountryAndNeighbour("portugal");
 // getCountryAndNeighbour("usa");
-
-//callback hell have a triangular shape and are bad pratice
