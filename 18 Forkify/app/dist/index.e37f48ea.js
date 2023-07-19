@@ -605,7 +605,7 @@ const showRecipe = async function() {
         alert(err);
     }
 };
-showRecipe();
+showRecipe(); ////
 
 },{}]},["aD7Zm","aenu9"], "aenu9", "parcelRequire3a11")
 
