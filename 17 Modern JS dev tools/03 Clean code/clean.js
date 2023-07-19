@@ -43,7 +43,7 @@ checkEpenses();
 
 console.log(budget);
 
-logBigExpenses = function (bigLimit) {
+const logBigExpenses = function (bigLimit) {
   let output = "";
   for (const entry of budget)
     output +=
