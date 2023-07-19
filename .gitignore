@@ -1,5 +1,5 @@
-.parcel-cache
-dist
-node_modules
+18 Forkify/app/.parcel-cache
+18 Forkify/app/dist
+18 Forkify/app/node_modules
 package-lock.json
 package.json
