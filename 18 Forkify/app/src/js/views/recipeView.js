@@ -17,7 +17,7 @@ class RecipeView {
   }
 
   //loading spinner
-  renderSpinner = function () {
+  renderSpinner() {
     const markup = `
     <div class="spinner">
       <svg>
@@ -26,7 +26,7 @@ class RecipeView {
     </div>`;
     this.#parentElement.innerHTML = "";
     this.#parentElement.insertAdjacentHTML("afterbegin", markup);
-  };
+  }
 
   #generateMarkup() {
     return `
